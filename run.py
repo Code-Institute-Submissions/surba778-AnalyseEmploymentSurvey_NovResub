@@ -1,4 +1,5 @@
 from openpyxl import load_workbook
+import sys
 
 DEST_FILE_NAME = 'employmentsurvey.xlsx'
 RESULT_SHEET = "Results"
@@ -13,7 +14,21 @@ def get_sheet_data(work_sheet):
     headings = [c.value for c in list(work_sheet.rows)[0][1:]]
     for row in list(work_sheet.rows)[1:]:
         sheet_data[row[0].value] = [str(c.value) for c in row[1:]]
+    validate_data(sheet_data)
     return headings, sheet_data
+
+def validate_data(sheet_data):
+    """
+    Inside the try, converts all string values into integers.
+    Raises ValueError if there are any strings in the sheet_data
+    """
+    try:
+        print((sheet_data))
+        for data in sheet_data.values():
+            [int(value) for value in data]
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again.\n")
+        sys.exit(1)
 
 
 def categorize_data(headings, engagement_data, sheet_name):
@@ -66,6 +81,7 @@ def update_worksheet_result(wb, final_data, headings):
 def main():
     wb = load_workbook(filename=DEST_FILE_NAME)
     final_data = {}
+    validate_data(final_data)
     for sheet in wb.worksheets:
         if sheet.title == RESULT_SHEET:
             wb.remove(sheet)
