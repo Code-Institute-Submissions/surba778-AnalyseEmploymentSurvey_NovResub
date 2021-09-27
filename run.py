@@ -17,6 +17,7 @@ def get_sheet_data(work_sheet):
     validate_data(sheet_data)
     return headings, sheet_data
 
+
 def validate_data(sheet_data):
     """
     Inside the try, converts all string values into integers.
@@ -37,7 +38,8 @@ def categorize_data(headings, engagement_data, sheet_name):
     """
     i = 0
     result_data = {}
-    print(f"[INFO] Categorizing the data of {sheet_name} according to the headings.")
+    print(f"[INFO] Categorizing the data of {sheet_name} according \
+            to the headings.")
     for heading in headings:
         result = []
         for data in engagement_data.values():
@@ -88,7 +90,9 @@ def main():
             wb.save(DEST_FILE_NAME)
         else:
             headings, sheet_data = get_sheet_data(sheet)
-            categorized_data = categorize_data(headings, sheet_data, sheet.title)
+            categorized_data = categorize_data(headings,
+                                               sheet_data,
+                                               sheet.title)
             analysed_data = analyse_data(categorized_data, sheet.title)
             final_data[sheet.title] = analysed_data
     update_worksheet_result(wb, final_data, headings)
