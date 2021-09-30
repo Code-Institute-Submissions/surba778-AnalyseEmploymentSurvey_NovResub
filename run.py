@@ -1,9 +1,9 @@
 """
 This module analyses the employment survey details in the excel sheet named
 employmentsurvey.xlsx.Excel sheet contains 5 different categories as sheet
-and each sheet contains questions the survey results for same.In this
+and each sheet contains questions the survey results for same. In this
 application we read each sheet in the excel sheet and calculate the percentage
-of the survey results given that the total no of employees are 40.And update
+of the survey results given that the total no of employees as 40.And update
 the survey result of all the sheets to sheet named Results.
 Note:As of now we don't get the survey inputs in the application.If you want
 to enter the value you can update the excel sheet and run the application.
