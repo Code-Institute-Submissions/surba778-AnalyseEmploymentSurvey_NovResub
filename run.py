@@ -125,6 +125,20 @@ def is_choice_valid(input_question):
             return is_choice_valid("Please Enter yes or no ")
 
 
+def select_topic(input_question):
+    """
+    user selects the topic under which the data should be updated.
+    Runs a while loop to get the valid choice.The loop will be repeatedly
+    request valid choice, until it is valid.
+    """
+    user_choice = input(input_question).strip()
+    while True:
+        if int(user_choice) in range(1, 6):
+            return user_choice
+        else:
+            return select_topic("Please select a valid topic in above list")
+
+
 def get_user_name():
     """
     Gets user name to print a welcome message  to the terminal.
@@ -136,24 +150,95 @@ def get_user_name():
         try:
             if(username.strip().isdigit()):
                 raise ValueError
-            else:
+            if(username.strip().isalnum()):
                 welcome_msg = f"Hi {username}! Welcome to employment survey "\
-                            "Analysis application. This application analyses" \
+                            "Analysis application. This application gets "\
+                            "user input and analyses" \
                             " the employment survey details provided in the" \
                             f" excel sheet {DEST_FILE_NAME} and update the "\
                             "results to the Results Sheet in the same file"
                 print(welcome_msg)
+
+            else:
+                raise ValueError
             break
         except ValueError as _:
-            print("Enter a valid value")
+            print("Enter a valid username")
+
+
+def get_user_survey_data(topics):
+    """
+    Get survey data and the topic from the user.
+    When the user selects the topic it makes sure user selects a
+    valid topic.Run a while loop to collect a valid string of
+    survey data from the user  via the terminal, which must be
+     a string  separated by commas.
+    The loop will repeatedly request data, until it is valid.
+    """
+    for (i, item) in enumerate(topics, start=1):
+        print(i, item)
+    input_question = "Select one topic under which you would like"\
+                     " to enter the survey data: "
+    user_topic_choice = select_topic(input_question)
+    while True:
+        survey_question = "Enter your question and the values for "\
+                          "Strongly Disagree,disagree,Neutral,Agree,"\
+                          "Strongly Agree separated by comma:\n"
+        user_data = input(survey_question)
+        user_data = user_data.split(',')
+        if validate_user_input(user_data):
+            print("Data is valid!")
+            survey_data = [int(item) for item in user_data[1:]]
+            survey_data.insert(0, user_data[0])
+            break
+    return user_topic_choice, survey_data
+
+
+def validate_user_input(values):
+    """
+    Inside the try, converts all string values except the first value
+    into integers.
+    Raises ValueError if strings cannot be converted into int,
+    or if there aren't exactly 6 values.
+    """
+    try:
+        [int(value) for value in values[1:]]
+        # The first value should be string since that is Question
+        if values[0].isdigit():
+            raise ValueError("Enter a proper question. "
+                             f"This is not a valid value {values[0]}")
+        if len(values) != 6:
+            raise ValueError(
+                f"Exactly 6 values required, you provided {len(values)}"
+            )
+    except ValueError as e:
+        print(f"Invalid data: {e}, please try again.\n")
+        return False
+
+    return True
+
+
+def update_survey_data(wb, sheet_name, survey_data):
+    """
+    updates the user survey data under the sheet
+    which the user has selected.
+    """
+    ws = wb[sheet_name]
+    ws.append(survey_data)
+    wb.save(DEST_FILE_NAME)
+    print(f"[INFO] Updated {DEST_FILE_NAME} with the user survey data.")
 
 
 def main():
     get_user_name()
+    wb = load_workbook(filename=DEST_FILE_NAME)
+    topics = wb.sheetnames
+    if(is_choice_valid("Would you like to input survey data? Yes or No :")):
+        user_topic_choice, survey_data = get_user_survey_data(topics)
+        user_choice_sheetname = topics[int(user_topic_choice)-1]
+        update_survey_data(wb, user_choice_sheetname, survey_data)
     if(is_choice_valid("Would you like to execute? Yes or No :")):
-        wb = load_workbook(filename=DEST_FILE_NAME)
         final_data = {}
-        validate_data(final_data)
         for sheet in wb.worksheets:
             if sheet.title == RESULT_SHEET:
                 wb.remove(sheet)
