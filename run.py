@@ -206,7 +206,8 @@ def validate_user_input(values):
         # The first value should be string since that is Question
         if values[0].isdigit():
             raise ValueError("Enter a proper question. "
-                             f"This is not a valid value {values[0]}")
+                             "This is not a valid value for "
+                             f"question-{values[0]}")
         if len(values) != 6:
             raise ValueError(
                 f"Exactly 6 values required, you provided {len(values)}"
