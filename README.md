@@ -8,13 +8,16 @@ the survey result of all the sheets to sheet named Results.
 
 ## Features
   - This app make use of available employment survery data in an excel sheet, analyses the data and updated the analysed data into a sheet named Results.
-  - [Excel before running](https://github.com/surba778/AnalyseEmploymentSurvey/blob/main/readme-images/excel_before_running.JPG)
-  - Here user needs to fill in the data and then the information will be saved in the survey data in an excel sheet. 
-  - [Getting user survey data](https://github.com/surba778/AnalyseEmploymentSurvey/blob/main/readme-images/get_user_survey_data.JPG)
-  - [User data is updated](https://github.com/surba778/AnalyseEmploymentSurvey/blob/main/readme-images/user_data_updted.JPG)
-  - This create a new worksheet called Result and update the final_data values to the sheet.
-  - [Result sheet](https://github.com/surba778/AnalyseEmploymentSurvey/blob/main/readme-images/results_sheet_created.JPG)
-  - [Final output](https://github.com/surba778/AnalyseEmploymentSurvey/blob/main/readme-images/finaloutput.JPG)
+    ![Excel before running](https://github.com/surba778/AnalyseEmploymentSurvey/blob/main/readme-images/excel_before_running.JPG)
+  - App asks for the username, presents him with a welcome message about the application, asks whether user would like to input the survey data.If yes,user would be prompted to
+    select the topic and gets the data from the user.Once user has entered the survey data, data is updated to the excel sheet.
+    ![Getting user survey data](https://github.com/surba778/AnalyseEmploymentSurvey/blob/main/readme-images/get_user_survey_data.JPG)
+    User data is updated to the excel sheet.
+     ![User data is updated](https://github.com/surba778/AnalyseEmploymentSurvey/blob/main/readme-images/user_data_updted.JPG)
+  - Once the data is entered. User will be prompted whether he would like to analyse the data or not.If yes,survey data is analysed and 
+    updates the final_data values to the sheet named Results and the final data is also printed to the console.
+    ![Result sheet](https://github.com/surba778/AnalyseEmploymentSurvey/blob/main/readme-images/results_sheet_created.JPG)
+    ![Final output](https://github.com/surba778/AnalyseEmploymentSurvey/blob/main/readme-images/finaloutput.JPG)
   - In order to parse the excel sheet, openpyxl module is used.
   - User gets an welcome message once he inputs his name and he can select whether he wants to execute the application or not.
   
@@ -22,17 +25,20 @@ the survey result of all the sheets to sheet named Results.
   - I confirmed that this project is responsive and works good.
   - Tested application with different input values.
   - Application prompts for a input, until a valid input is provided.
-  - [Validating topic selection](https://github.com/surba778/AnalyseEmploymentSurvey/blob/main/readme-images/validating_topic_selection.JPG)
-  - [Validating user survey data](https://github.com/surba778/AnalyseEmploymentSurvey/blob/main/readme-images/validating_user_survey_data.JPG)
-  - [Validating username](https://github.com/surba778/AnalyseEmploymentSurvey/blob/main/readme-images/validating_username.JPG)
+    - App validates the username and keeps prompting until a valid username is entered.
+    ![Validating username](https://github.com/surba778/AnalyseEmploymentSurvey/blob/main/readme-images/validating_username.JPG)
+    - User should select only the listed topics i.e between 1 to 6. If not it keeps asking for the valid topic selection.
+    ![Validating topic selection](https://github.com/surba778/AnalyseEmploymentSurvey/blob/main/readme-images/validating_topic_selection.JPG)
+    - While entering the survey data, user should provide the first value as a string since the fist value is question.This is also validated while the user inputs the data.
+    ![Validating user survey data](https://github.com/surba778/AnalyseEmploymentSurvey/blob/main/readme-images/validating_user_survey_data.JPG)
+    
   
 ## Validator Testing
   - [Python validator](http://pep8online.com/) No error occurs.
-  - [Pep8 image](https://github.com/surba778/AnalyseEmploymentSurvey/blob/main/readme-images/Pep8testing.JPG)
+     ![Pep8 image](https://github.com/surba778/AnalyseEmploymentSurvey/blob/main/readme-images/Pep8testing.JPG)
 
 ## Improvements
   - Would like to implement below features in future.
-    - User should be able to input the survey details.
     - Update the excel sheet with the user input and analyse the data.
 
 ## Technologies used
