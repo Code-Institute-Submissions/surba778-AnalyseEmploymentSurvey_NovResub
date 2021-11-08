@@ -39,7 +39,7 @@ the survey result of all the sheets to sheet named Results.
 
 ## Improvements
   - Would like to implement below features in future.
-    - Update the excel sheet with the user input and analyse the data.
+    - In order to make this program more user friendly, the ability to export the database to a printable format - such as a PDF.
 
 ## Technologies used
   - [GitHub:](https://github.com/)
@@ -57,3 +57,9 @@ the survey result of all the sheets to sheet named Results.
     4. Once the application has been deployed,click on View to open application.
     5. Heroku allows developers to quickly and almost painlessly deploy an application on a web server.
     6. Log in to GitHub and locate the [Github repository](https://github.com/surba778/AnalyseEmploymentSurvey)
+
+## Credits
+- **Code Institute** - for git template IDE and heroku deployment instructions.
+-  [Openpyxl module](https://openpyxl.readthedocs.io/en/stable/tutorial.html) for reading and writing the excel sheet data.
+- Mentors help and advice
+- Tutors help
